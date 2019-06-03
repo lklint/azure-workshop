@@ -1,20 +1,31 @@
-Create a resource group
+Open a command prompt
 
-- az group create -n ndcOsloRG -l northeurope
+## Create a resource group
 
-Create web app
+`az group create -n ndcOsloRG -l northeurope`
 
-- az appservice plan create -g ndcOsloRG -n ndcOsloS1 --sku S1
-- az webapp create -g ndcOsloRG -p ndcOsloS1 -n ndcOsloApp
+##Create web app
 
-Show in portal
+`az appservice plan create -g ndcOsloRG -n ndcOsloS1 --sku S1`
 
-Set defaults in CLI
-- az configure --defaults group=ndcOsloRG location=northeurope web=ndcOsloS1
+`az webapp create -g ndcOsloRG -p ndcOsloS1 -n ndcOsloApp`
 
-Show interactive mode
-- az interactive
-https://docs.microsoft.com/en-us/cli/azure/interactive-azure-cli?view=azure-cli-latest
 
-Introduce ARM templates
-https://github.com/Azure/azure-quickstart-templates 
+##Set defaults in CLI
+
+`az configure --defaults group=ndcOsloRG location=northeurope web=ndcOsloS1`
+
+## Interactive mode
+`az interactive`
+
+## ARM templates
+Look at several templates from [here](https://github.com/Azure/azure-quickstart-templates)
+
+Understand the structure and format of ARM templates.
+
+Pick one you want to deploy. 
+Suggestion: [101-cosmosdb-table](https://github.com/Azure/azure-quickstart-templates/tree/master/101-cosmosdb-table)
+
+In the CLI: 
+
+`az group deployment create -g ndcOsloRG --mode incremental --template-uri https://github.com/Azure/azure-quickstart-templates/blob/master/101-cosmosdb-table/azuredeploy.json --parameters https://github.com/Azure/azure-quickstart-templates/blob/master/101-cosmosdb-table/azuredeploy.parameters.json` 
