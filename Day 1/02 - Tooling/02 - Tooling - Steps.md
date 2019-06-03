@@ -6,12 +6,12 @@
 
 ### Test out the CLI :sparkles:
 Open a command prompt 
-'''az login'''
+`az login`
 
 Choose subscription
 
-'az account list'
-'az account set --subscription <ID>'
+`az account list`
+`az account set --subscription <ID>`
 
 
 ## Install Azure storage explorer
