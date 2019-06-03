@@ -4,14 +4,14 @@ Open a command prompt
 
 `az group create -n ndcOsloRG -l northeurope`
 
-##Create web app
+## Create web app
 
 `az appservice plan create -g ndcOsloRG -n ndcOsloS1 --sku S1`
 
 `az webapp create -g ndcOsloRG -p ndcOsloS1 -n ndcOsloApp`
 
 
-##Set defaults in CLI
+## Set defaults in CLI
 
 `az configure --defaults group=ndcOsloRG location=northeurope web=ndcOsloS1`
 
