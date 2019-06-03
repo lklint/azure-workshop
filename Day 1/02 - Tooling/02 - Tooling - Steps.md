@@ -3,6 +3,7 @@
 
 ## Get Workshop Project
 Go here: [URL shortener](https://github.com/fxmauricard/aspnetcore-url-shortener )
+
 Download as .zip. __Do Not Fork/Clone__
 
 ## Install Azure CLI
