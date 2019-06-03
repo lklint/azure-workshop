@@ -9,8 +9,10 @@ Open a command prompt
 '''az login'''
 
 Choose subscription
-'''az account list'''
-'''az account set --subscription <ID>'''
+'''
+az account list
+az account set --subscription <ID>
+'''
 
 ## Install Azure storage explorer
 [This is the place to click](https://azure.microsoft.com/en-gb/features/storage-explorer/)
