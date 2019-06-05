@@ -17,3 +17,25 @@ Once you know the build is successful, we can publish it.
 Follow the wizard. Enter Microsoft credentials if necessary.
 
 Publish the solution to the web app we created earlier.
+
+## Create Webjob
+
+A WebJob is a program running in the background of an App Service. It runs in the same context as your web app at no additional cost. 
+
+### Storage Account
+
+All web jobs need a storage account.
+Create a new storage account either through the portal or CLI.
+
+Portal: `Storage Accounts -> Add`
+
+CLI: `az storage account create -g ndcOsloRG -n ndcoslowebjobstorage -l northeurope --sku Standard_LRS`
+
+### WebJob
+
+Create a new project in VS 2019.
+
+`File -> New -> Project`
+
+Select the "Azure Webjob (.NET Framework)" template, give the project a name and local location.
+
