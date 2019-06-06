@@ -31,6 +31,12 @@ Portal: `Storage Accounts -> Add`
 
 CLI: `az storage account create -g ndcOsloRG -n ndcoslowebjobstorage -l northeurope --sku Standard_LRS`
 
+Get the storage account connection string (copy this)
+
+Portal: `Storage Account -> Access Keys` 
+
+CLI: `az storage account show-connection-string -n ndcoslowebjobstorage -g ndcOsloRG`
+
 ### WebJob
 
 Create a new project in VS 2019.
@@ -39,3 +45,14 @@ Create a new project in VS 2019.
 
 Select the "Azure Webjob (.NET Framework)" template, give the project a name and local location.
 
+Open the `app.config` and insert the connection string from above for both `AzureWebJobsDashboard` and `AzureWebJobsStorage`
+
+Hit F5 to run WebJob locally.
+
+In the portal go to `storage account -> Storage Explorer` and inspect the queue storage values.
+
+### Publish WebJob
+
+In Visual Studio go to `Build -> Publish` and publish the WebJob to the WebApp you created earlier
+
+In the portal go to `Web App -> WebJobs -> Run the published webjob`
