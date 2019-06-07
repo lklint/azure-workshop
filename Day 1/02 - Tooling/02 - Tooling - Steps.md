@@ -18,6 +18,8 @@ Choose subscription
 
 `az account list`
 
+Copy the ID for your preferred Azure subscription
+
 `az account set --subscription <ID>`
 
 
