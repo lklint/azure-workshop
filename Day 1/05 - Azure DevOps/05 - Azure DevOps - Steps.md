@@ -16,9 +16,13 @@ In the bottom right corner click on `Add to Source Control -> Git`. This will ad
 
 Open Team Explorer: `View -> Team Explorer` and click `Publish Git Repo` under Push to Azure DevOps Services.
 
-Find the DevOps Project you have created above in the "Connect to a Project" dialog.
+Find the Organization and DevOps Project you have created above. Click `Publish repository`.
+
+Go to [DevOps Main Page](https://dev.azure.com) -> Repos and confirm code has been pushed. 
 
 ## Create Build Pipeline
+
+
 
 Continous Integration
 
