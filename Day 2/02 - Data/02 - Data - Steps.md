@@ -50,12 +50,12 @@ Navigate to your Cosmos DB instance. Select `Data Explorer`.
 
 Expand the tree list for the `urlshortener` database and click on `items`. Click on `new item` and insert the following JSON:
 
-` 
+~~~~ 
 {
     "id": "2",
     "OriginalUrl" : "http://www.ndcoslo.com"
 }
-`
+~~~~
 
 This is the very basic data format we will use for the data from the URL shortener. 
 
