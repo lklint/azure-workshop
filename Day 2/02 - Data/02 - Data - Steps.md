@@ -1,6 +1,6 @@
 ## Create Cosmos DB
 
-_Portal_: Go to Cosmos DB, then click `Add` to create a CosmosDB account.
+*_Portal_*: Go to Cosmos DB, then click `Add` to create a CosmosDB account.
 
 Input the details for the instance:
 
@@ -23,9 +23,14 @@ Now you need to create a database in the Cosmos account.
 
 Click on the new Cosmos DB account you created. In the overview, click `Create Items Container`. This will create a data container within your account.
 
-Go to `Data Explorer` and add a new container. Database ID : `ndcoslocosmosdb`. Container ID : `urlcontainer`. Partition key: `/url`. Throughput: 1000.
+Go to `Data Explorer` and add a new container. 
 
-_CLI_
+- Database ID : `ndcoslocosmosdb`. 
+- Container ID : `urlcontainer`. 
+- Partition key: `/url`. 
+- Throughput: 400.
+
+*_CLI_*
 
 Create the Cosmos DB account
 
@@ -37,5 +42,21 @@ Create the database
 
 Create the SQL container
 
-`az cosmosdb collection create -g ndcOsloRG --collection-name urlcontainer  --name ndcoslocosmosdb --db-name urlshortener --partition-key-path /urlshortkey --throughput 1000`
+`az cosmosdb collection create -g ndcOsloRG --collection-name urlcontainer  --name ndcoslocosmosdb --db-name urlshortener --partition-key-path /urlshortkey --throughput 400`
 
+## Add Data to CosmosDB
+
+Navigate to your Cosmos DB instance. Select `Data Explorer`. 
+
+Expand the tree list for the `urlshortener` database and click on `items`. Click on `new item` and insert the following JSON:
+
+` 
+{
+    "id": "2",
+    "OriginalUrl" : "http://www.ndcoslo.com"
+}
+`
+
+This is the very basic data format we will use for the data from the URL shortener. 
+
+## Connect the VS2019 solution
