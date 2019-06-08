@@ -22,7 +22,9 @@ Go to [DevOps Main Page](https://dev.azure.com) -> Repos and confirm code has be
 
 ## Create Build Pipeline
 
+It's time to create a continous integration pipeline for the project.
 
+In DevOps go to `Pipelines`. Click on `New Pipeline`.
 
 Continous Integration
 
