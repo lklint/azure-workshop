@@ -1,5 +1,7 @@
 ## Create Cosmos DB
 
+Note: You can downlod the [CosmosDB Emulator](https://aka.ms/cosmosdb-emulator) as well. 
+
 *_Portal_*: Go to Cosmos DB, then click `Add` to create a CosmosDB account.
 
 Input the details for the instance:
@@ -57,6 +59,15 @@ Expand the tree list for the `urlshortener` database and click on `items`. Click
 }
 ~~~~
 
+Go to the `Keys` section of the CosmosDB. Make a note of `Primary Connection String`.
+
 This is the very basic data format we will use for the data from the URL shortener. 
 
 ## Connect the VS2019 solution
+
+Go back to or open the UrlShortener solution in VS2019. 
+
+Open the Nuget package manager by right clicking on the project `UrlShortener` in Team Explorer. Search for `Microsoft.Azure.DocumentDB` and click install. 
+
+Alternatively, use the `Tools -> Package-manager Console` in VS2019 and enter the command `Install-Package Microsoft.Azure.DocumentDB`.
+
