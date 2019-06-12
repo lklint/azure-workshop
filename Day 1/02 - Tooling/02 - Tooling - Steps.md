@@ -31,5 +31,6 @@ Copy the ID for your preferred Azure subscription
 `az account set --subscription <ID>`
 
 
-## Install Azure storage explorer
-[This is the place to click](https://azure.microsoft.com/en-gb/features/storage-explorer/)
+## Install Cosmos DB emulator
+[This is the place to click](https://aka.ms/cosmosdb-emulator/)
+
