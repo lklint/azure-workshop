@@ -28,26 +28,26 @@ In DevOps go to `Pipelines`. Click on `New Pipeline`.
 
 In this tutorial, we will use the visual editor, which is under `Use the classic editor` link.
 
-Choose *Team Project*, *repository* and branch for the project. Probably `NDCOslo` if you have used the workshop default. 
+Choose _Team Project_, _repository_ and branch for the project. Probably `NDCOslo` if you have used the workshop default. 
 
 Select the ASP.NET Core template. If you can't see it, use the search feature.
 
 Then you arrive at the configuration for the pipeline. There are a number of sections here.
 
-For *Pipeline* choose 
+For _Pipeline_ choose 
 - Name: Leave as default or choose your own.
 - Agent Pool: Hosted VS2017. Click on the `pool information` link to see more about what each pool includes (spolier: it is a lot!).
 - Leave parameters as default
 
 And that is really it for this simple project. Because we chose the template for the .NET Core project, the steps are already done for us. A more complex project might have added steps, altered steps or a completely custom approach. 
 
-Click *Save & queue* to run the build for the first time. 
+Click _Save & queue_ to run the build for the first time. 
 
 Once the build has completed you will receive an email with the result: success/failure. 
 
-Go back into the build configuration and go to the *variables* tab. These are the build wide variables that you can manage for the whole pipeline. 
+Go back into the build configuration and go to the _variables_ tab. These are the build-wide variables that you can manage for the whole pipeline. 
 
-Go to the *triggers* tab. Here you can schedule periodic builds, or link a build. For now check the *Enable Continous Integration* checkbox. 
+Go to the _triggers_ tab. Here you can schedule periodic builds, or link a build. For now check the _Enable Continous Integration_ checkbox. 
 
 And that is it. You have now created a build pipeline with continous integration. Simple. 
 
