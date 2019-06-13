@@ -24,7 +24,19 @@ Go to [DevOps Main Page](https://dev.azure.com) -> Repos and confirm code has be
 
 It's time to create a continous integration pipeline for the project.
 
-In DevOps go to `Pipelines`. Click on `New Pipeline`.
+In DevOps go to `Pipelines`. Click on `New Pipeline`. 
+
+In this tutorial, we will use the visual editor, which is under `Use the classic editor` link.
+
+Choose *Team Project*, *repository* and branch for the project. Probably `NDCOslo` if you have used the workshop default. 
+
+Select the ASP.NET Core template. If you can't see it, use the search feature.
+
+Then you arrive at the configuration for the pipeline. There are a number of sections here.
+
+For *Pipeline* choose 
+- Name: Leave as default or choose your own.
+- Agent Pool: Hosted VS2017. Click on the `pool information` link to see more about what each pool includes.
 
 Continous Integration
 
