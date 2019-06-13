@@ -41,6 +41,8 @@ For _Pipeline_ choose
 
 And that is really it for this simple project. Because we chose the template for the .NET Core project, the steps are already done for us. A more complex project might have added steps, altered steps or a completely custom approach. 
 
+Note that the 
+
 Click _Save & queue_ to run the build for the first time. 
 
 Once the build has completed you will receive an email with the result: success/failure. 
@@ -53,6 +55,22 @@ And that is it. You have now created a build pipeline with continous integration
 
 ## Create Release
 
-The next step is to create a release for the build you have just done. 
+The next step is to create a release for the build you have just done. We want the release to replace the manual `Build -> Publish` from Visual Studio with this managed, logged, documented and build dependant release in DevOps.
 
-Push code to Azure Web App
+On the left hand menu click on _Builds_ and on the latest build hover over it. The _elipsis_ menu (3 dots) show. Click on it and select _Release_. This will link the build with a new release. It is a shortcut to define which build to create a release from in DevOps. 
+
+Choose the `Azure App Service deployment` template. 
+
+The _Tasks_ tab will have a red exclamation mark. Hover over it and select the newly created task (Stage 1). You can see now that the red exclamation mark was shown as you haven't yet entered your Azure credentials. 
+
+Choose your Azure Subscription from the dropdown, then click _Authorize_ to link your Azure subscription. Enter your credentials if prompted. Leave App type as `Web app on Windows` and select the web app we created earlier (ndcOsloApp).
+
+Click _Save_ and add a comment if you want to. 
+
+Click on _Crate Release_, then click _Create_.
+
+Go to Releases on the left navigation and confirm the release was successful. Click on the release to see the logs for it. 
+
+## Test CI pipeline and data flow
+
+Go back to Visual Studio, make a change to the code (can just be a comment), and check it in. 
