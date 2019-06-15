@@ -8,8 +8,9 @@ Open a command prompt
 
 `az appservice plan create -g ndcOsloRG -n ndcOsloS1 --sku S1`
 
-`az webapp create -g ndcOsloRG -p ndcOsloS1 -n ndcOsloApp`
+`az webapp create -g ndcOsloRG -p ndcOsloS1 -n <unique name>`
 
+App service names are unique across all of Azure, as the name is also the URL. 
 
 ## Set defaults in CLI
 
