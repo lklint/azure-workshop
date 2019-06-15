@@ -26,4 +26,10 @@ Create the Function App.
 
 `az functionapp create -g ndcOsloRG --consumption-plan-location northeurope --name UrlExpiry --storage-account  urlexpiry32 --runtime dotnet`
 
-## 
+## Create Function Timer 
+
+In Visual Studio 2019 go to `File -> New Project` and seach for `Function`. Choose the *Azure Functions* project and click *Next*. 
+
+Give the project a name such as `UrlExpiryTimer`. Choose a location, create a new solution and leave the solution name as suggested. Click *Create*.
+
+Choose the *Timer Trigger*. Select storage emulator as storage account. The schedule is a Cron job format. Set it as `0 */5 * * * *`

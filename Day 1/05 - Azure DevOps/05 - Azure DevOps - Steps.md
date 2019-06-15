@@ -74,3 +74,5 @@ Go to Releases on the left navigation and confirm the release was successful. Cl
 ## Test CI pipeline and data flow
 
 Go back to Visual Studio, make a change to the code (can just be a comment), and check it in. 
+
+Watch the marvel of DevOps, CI and unicorn kittens.
