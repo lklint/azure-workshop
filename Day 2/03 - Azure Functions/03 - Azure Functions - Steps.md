@@ -32,4 +32,4 @@ In Visual Studio 2019 go to `File -> New Project` and seach for `Function`. Choo
 
 Give the project a name such as `UrlExpiryTimer`. Choose a location, create a new solution and leave the solution name as suggested. Click *Create*.
 
-Choose the *Timer Trigger*. Select storage emulator as storage account. The schedule is a Cron job format. Set it as `0 */5 * * * *`
+Choose the *Timer Trigger*. Select storage emulator as storage account. The schedule is a Cron job format. Set it as `* * * * * *`. This means the trigger will fire every minute. To learn more about cron jobs, go [here](https://www.ostechnix.com/a-beginners-guide-to-cron-jobs/).
