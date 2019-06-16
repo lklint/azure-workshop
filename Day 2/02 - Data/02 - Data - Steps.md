@@ -52,8 +52,9 @@ Expand the tree list for the `urlshortener` database and click on `items`. Click
 
 ~~~~ 
 {
-    "id": "2",
-    "OriginalUrl" : "http://www.ndcoslo.com"
+    "UrlId": "566253392",
+    "OriginalUrl" : "http://www.ndcoslo.com",
+    "CreatedDateTime": "2019-06-16T07:35:18.1018357+02:00"
 }
 ~~~~
 
@@ -97,6 +98,15 @@ Your test environment/local machine now use the emulator and publishing the proj
 
 ## Add Cosmos SDK to Project
 
+Add files
+- ShortUrlsController.cs
+- Persistence.cs
+- ShortUrl.cs
+- IShortUrlService
+- ShortUrlService
+
+Change files
+
 Download the file `Persistence.cs` from [here]()
 
 In `Startup.cs` after the line `services.AddScoped<IShortUrlService, ShortUrlService>();` add 
@@ -112,3 +122,6 @@ services.AddScoped<Persistence>((s) =>
 
 then delete the line `services.AddDbContext<UrlShortenerContext>(options => options.UseSqlite("filename=shorturls.db"));`
 
+Run locally with Cosmos emulator
+
+Publish to Azure CosmosDB, run it there, inspect data in Azure.
