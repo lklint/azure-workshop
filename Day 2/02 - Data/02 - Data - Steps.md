@@ -98,16 +98,16 @@ Your test environment/local machine now use the emulator and publishing the proj
 
 ## Add Cosmos SDK to Project
 
-Add files
-- ShortUrlsController.cs
-- Persistence.cs
-- ShortUrl.cs
-- IShortUrlService
-- ShortUrlService
+Get the following files from the [Github workshop repo](https://github.com/lklint/azure-workshop/tree/master/Day%202/02%20-%20Data) and replace/add them in your solution.
 
-Change files
+- `ShortUrlsController.cs`
+- `ShortUrl.cs`
+- `IShortUrlService`
+- `ShortUrlService`
 
-Download the file `Persistence.cs` from [here]()
+Add `Persistence.cs` to your `Data` folder.
+
+Look through the updated and new files and understand the changes to use Cosmos DB.
 
 In `Startup.cs` after the line `services.AddScoped<IShortUrlService, ShortUrlService>();` add 
 
@@ -122,6 +122,8 @@ services.AddScoped<Persistence>((s) =>
 
 then delete the line `services.AddDbContext<UrlShortenerContext>(options => options.UseSqlite("filename=shorturls.db"));`
 
-Run locally with Cosmos emulator
+Run the project to test out the new Url Shorterner with added Azure goodness. Add a new URL. 
 
-Publish to Azure CosmosDB, run it there, inspect data in Azure.
+Open the Cosmos DB Emulator Data Explorer using the Windows tray icon. Find the URL you just created.
+
+Check in your changes, wait for the pipeline to complate in Azure DevOps and then create a new URL on the Azure Web App instance. Inspect the data in Azure to make sure that it worked.
