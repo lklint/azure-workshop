@@ -25,9 +25,9 @@ Click on the new Cosmos DB account you created. In the overview, click `Create I
 
 Go to `Data Explorer` and add a new container. 
 
-- Database ID : `ndcoslocosmosdb`. 
-- Container ID : `urlcontainer`. 
-- Partition key: `/url`. 
+- Database ID : `URLs`. 
+- Container ID : `ShortUrls`. 
+- Partition key: `/UrlId`. 
 - Throughput: 400.
 
 *_CLI_*
@@ -38,11 +38,11 @@ Create the Cosmos DB account
 
 Create the database
 
-`az cosmosdb database create -g ndcOsloRG --name ndcoslocosmosdb --db-name urlshortener`
+`az cosmosdb database create -g ndcOsloRG --name ndcoslocosmosdb --db-name URLs`
 
 Create the SQL container
 
-`az cosmosdb collection create -g ndcOsloRG --collection-name urlcontainer  --name ndcoslocosmosdb --db-name urlshortener --partition-key-path /urlshortkey --throughput 400`
+`az cosmosdb collection create -g ndcOsloRG --collection-name ShortUrls  --name ndcoslocosmosdb --db-name URLs --partition-key-path /UrlId --throughput 400`
 
 ## Add Data to CosmosDB
 

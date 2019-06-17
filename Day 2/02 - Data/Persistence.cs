@@ -22,8 +22,8 @@ namespace UrlShortener.Data
 
         public Persistence(Uri endpointUri, string primaryKey)
         {
-            _databaseId = "urlshortener";
-            _collectionId = "urlcontainer";
+            _databaseId = "URLs";
+            _collectionId = "ShortUrls";
             _endpointUri = endpointUri;
             _primaryKey = primaryKey;
         }
