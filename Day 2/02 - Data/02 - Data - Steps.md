@@ -126,6 +126,8 @@ Open the Cosmos DB Emulator Data Explorer using the Windows tray icon. Find the 
 
 Go to your Web App in the Portal -> Configuration. We need to add a new application setting to allow the website to use the production configurations.
 
-Add the key `ASPNETCORE_ENVIRONMENT` with value `Production`.
+Add the key `ASPNETCORE_ENVIRONMENT` with value `Production`. Then click *Save*.
 
-Check in your changes, wait for the pipeline to complete in Azure DevOps and then create a new URL on the Azure Web App instance. Inspect the data in Azure to make sure that it worked.
+The Cosmos DB account only allows connections through its VNet by default. Go to the Portal and find your CosmosDB -> Firewalls and Virtual Networks. Allow access from all networks. 
+
+Check in your changes, wait for the pipeline to complete in Azure DevOps (don't forget to trigger a Release) and then create a new URL on the Azure Web App instance. Inspect the data in Azure to make sure that it worked.
