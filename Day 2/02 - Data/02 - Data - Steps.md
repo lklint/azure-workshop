@@ -58,7 +58,7 @@ Expand the tree list for the `urlshortener` database and click on `items`. Click
 }
 ~~~~
 
-Go to the `Keys` section of the CosmosDB. Make a note of `Primary Connection String`.
+Go to the `Keys` section of the CosmosDB. Make a note of `Primary Key`.
 
 This is the very basic data format we will use for the data from the URL shortener. 
 
