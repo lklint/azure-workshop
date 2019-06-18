@@ -72,7 +72,7 @@ Update the arguments for the `Run` function in the Azure Function file to be
 
 ~~~~
 [TimerTrigger("0 */1 * * * *")]TimerInfo myTimer,
-[CosmosDB(ConnectionStringSetting = "cosmosdbconnection")] DocumentClient client, 
+[CosmosDB(databaseName: "URLs", collectionName: "ShortUrls", ConnectionStringSetting = "cosmosdbconnection")] DocumentClient client, 
 ILogger log
 ~~~~
 
