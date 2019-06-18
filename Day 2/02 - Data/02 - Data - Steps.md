@@ -124,4 +124,8 @@ Run the project to test out the new Url Shorterner with added Azure goodness. Ad
 
 Open the Cosmos DB Emulator Data Explorer using the Windows tray icon. Find the URL you just created.
 
-Check in your changes, wait for the pipeline to complate in Azure DevOps and then create a new URL on the Azure Web App instance. Inspect the data in Azure to make sure that it worked.
+Go to your Web App in the Portal -> Configuration. We need to add a new application setting to allow the website to use the production configurations.
+
+Add the key `ASPNETCORE_ENVIRONMENT` with value `Production`.
+
+Check in your changes, wait for the pipeline to complete in Azure DevOps and then create a new URL on the Azure Web App instance. Inspect the data in Azure to make sure that it worked.
