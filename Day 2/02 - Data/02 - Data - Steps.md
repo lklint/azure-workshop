@@ -70,27 +70,23 @@ Open the Nuget package manager by right clicking on the project `UrlShortener` i
 
 Alternatively, use the `Tools -> Package-manager Console` in VS2019 and enter the command `Install-Package Microsoft.Azure.DocumentDB.Core`.
 
-Open `appsettings.json` and add the following settings:
+Open `appsettings.json` and add the following settings, after logging:
 
 ~~~~
-{
-  "CosmosDB": {
-    "URL": "<URI from Azure>",
-    "PrimaryKey": "<PRIMARY KEY from Azure>"
-  }
+"CosmosDB": {
+  "URL": "<URI from Azure>",
+  "PrimaryKey": "<PRIMARY KEY from Azure>"
 }
 ~~~~
 
 Open the Cosmos DB Emulator Data Explorer by right clicking on the tray icon on your machine.
 
-Open `appsettings.Development.json` and add the following settings:
+Open `appsettings.Development.json` and add the following settings after logging:
 
 ~~~~
-{
-  "CosmosDB": {
-    "URL": "https://localhost:8081",
-    "PrimaryKey": "<PRIMARY KEY from Cosmos DB emulator>"
-  }
+"CosmosDB": {
+  "URL": "https://localhost:8081",
+  "PrimaryKey": "<PRIMARY KEY from Cosmos DB emulator>"
 }
 ~~~~
 
@@ -106,6 +102,8 @@ Get the following files from the [Github workshop repo](https://github.com/lklin
 - `ShortUrlService`
 
 Add `Persistence.cs` to your `Data` folder.
+
+Update the `Show.cshtml` to reflect the `UrlId` rather than the `Id`.
 
 Look through the updated and new files and understand the changes to use Cosmos DB.
 
