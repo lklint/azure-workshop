@@ -60,7 +60,7 @@ Add a new class (`Shift+Alt+C`) to the project called `ShortUrl`. This is the sa
 ````
 public class ShortUrl
 {
-    public int id { get; set; }
+    public string id { get; set; }
 
     public int UrlId { get; set; }
 
