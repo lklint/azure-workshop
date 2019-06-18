@@ -99,3 +99,7 @@ We want the new function to live in Azure, so do the naughty for now and publish
 Last step is to allow the Function access to CosmosDB on the Azure Virtual Network. In the portal go to your Cosmos DB, then select `Firewall and Virtual Networks`. Here allow access from all networks and click save to update the firewall configuration. This would normally be manages by either placing the Function on the same network, or through role based policies. 
 
 Go to your Azure Function in the Portal. Under *Functions*, click on the name of the function we just created. Click *Run*.
+
+## Bonus points
+
+If you have time left, move the build and release of the Azure Function to Azure DevOps. 

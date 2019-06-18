@@ -39,6 +39,10 @@ Select the *Database ID* and *Collection Id*.
 
 Then for the document add the `Outputs` from the Compose step. 
 
-You need to add a parameter for partition key to make Cosmos DB happy. Click on *Add New Parameter* and choose *Partition Key Value*. The value needs to be in quotation marks to make it valid JSON. 
+You need to add a parameter for partition key to make Cosmos DB happy. Click on *Add New Parameter* and choose *Partition Key Value*. The value needs to be in quotation marks to make it valid JSON, and then add the dynamic Twitter value *Original Tweet Id*. 
 
 Click *Save* and then *Run*.
+
+## Bonus Points
+
+Add another logic app of your choice, either by using a template of from scratch. 
