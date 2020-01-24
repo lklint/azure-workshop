@@ -96,7 +96,7 @@ This will retrieve all the ShortUrls in the Cosmos DB and if any are more than 5
 
 ## Publish Azure Function
 
-We want the new function to live in Azure, so do the naughty for now and publish it from Visual Studio. Of course this would ideally be set up in Azure DevOps. `Build -> Publish` and push the Function to the Azure Function App you created above. 
+We want the new function to live in Azure, so do the naughty for now and publish it from Visual Studio. **Of course this would ideally be set up in Azure DevOps**. `Build -> Publish` and push the Function to the Azure Function App you created above. 
 
 Last step is to allow the Function access to CosmosDB on the Azure Virtual Network. In the portal go to your Cosmos DB, then select `Firewall and Virtual Networks`. Here allow access from all networks and click save to update the firewall configuration. This would normally be manages by either placing the Function on the same network, or through role based policies. 
 
