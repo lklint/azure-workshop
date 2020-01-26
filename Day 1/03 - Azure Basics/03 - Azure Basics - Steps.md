@@ -1,20 +1,6 @@
-Open a command prompt
-
-## Create a resource group
-
-`az group create -n ndcOsloRG -l northeurope`
-
-## Create web app
-
-`az appservice plan create -g ndcOsloRG -n ndcOsloS1 --sku S1`
-
-`az webapp create -g ndcOsloRG -p ndcOsloS1 -n <unique name>`
-
-App service names are unique across all of Azure, as the name is also the URL. 
-
 ## Set defaults in CLI
 
-`az configure --defaults group=ndcOsloRG location=northeurope web=ndcOsloS1`
+`az configure --defaults group=ndcLondonRG location=northeurope web=ndcLondonS1`
 
 ## Interactive mode
 `az interactive`
@@ -29,4 +15,4 @@ Suggestion: [101-cosmosdb-table](https://github.com/Azure/azure-quickstart-templ
 
 In the CLI: 
 
-`az group deployment create -g ndcOsloRG --mode incremental --template-uri https://github.com/Azure/azure-quickstart-templates/blob/master/101-cosmosdb-table/azuredeploy.json --parameters https://github.com/Azure/azure-quickstart-templates/blob/master/101-cosmosdb-table/azuredeploy.parameters.json` 
+`az group deployment create -g ndcLondonRG --mode incremental --template-uri https://github.com/Azure/azure-quickstart-templates/blob/master/101-cosmosdb-table/azuredeploy.json --parameters https://github.com/Azure/azure-quickstart-templates/blob/master/101-cosmosdb-table/azuredeploy.parameters.json` 

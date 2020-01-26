@@ -1,10 +1,24 @@
 ## App Services
 
-Make sure you have an app service plan and app service in your Azure subscription. If not, go back to lesson 3 and create them.
+Start by creating an app service that can host part of the project we are building. 
+
+Open a command prompt.
+
+### Create a resource group
+
+`az group create -n ndcLondonRG -l northeurope`
+
+### Create web app
+
+`az appservice plan create -g ndcLondonRG -n ndcLondonS1 --sku S1`
+
+`az webapp create -g ndcLondonRG -p ndcLondonS1 -n <unique name>`
+
+App service names are unique across all of Azure, as the name is also the URL. 
 
 ## Publish Web Project
 
-You can publish a web project directly from Visual Studio to an Azure App Service. This is not recommended for production scenarios, but can be a very useful tool. 
+You can publish a web project directly from Visual Studio to an Azure App Service. **This is not recommended for production scenarios,** but can be a very useful tool. 
 
 Open the workshop project in VS2019 `File -> Open -> Project/Solution`
 
@@ -16,7 +30,7 @@ Once you know the build is successful, we can publish it.
 
 Follow the wizard. Enter Microsoft credentials if necessary.
 
-Publish the solution to the web app we created earlier.
+Publish the solution to the web app we created before.
 
 ## Create Webjob
 
@@ -29,13 +43,13 @@ Create a new storage account either through the portal or CLI.
 
 Portal: `Storage Accounts -> Add`
 
-CLI: `az storage account create -g ndcOsloRG -n ndcoslowebjobstorage -l northeurope --sku Standard_LRS`
+CLI: `az storage account create -g ndcLondonRG -n ndclondonwebjobstorage -l northeurope --sku Standard_LRS`
 
 Get the storage account connection string (copy this)
 
 Portal: `Storage Account -> Access Keys` 
 
-CLI: `az storage account show-connection-string -n ndcoslowebjobstorage -g ndcOsloRG`
+CLI: `az storage account show-connection-string -n ndclondonwebjobstorage -g ndcLondonRG`
 
 ### WebJob
 
@@ -53,6 +67,6 @@ In the portal go to `storage account -> Storage Explorer` and inspect the queue 
 
 ### Publish WebJob
 
-In Visual Studio go to `Build -> Publish` and publish the WebJob to the WebApp you created earlier
+In Visual Studio go to `Build -> Publish` and publish the WebJob to the WebApp you created just before.
 
 In the portal go to `Web App -> WebJobs -> Run the published webjob`

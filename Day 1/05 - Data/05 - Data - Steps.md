@@ -1,11 +1,13 @@
 ## Create Cosmos DB
 
-*_Portal_*: Go to Cosmos DB, then click `Add` to create a CosmosDB account.
+<u>*_Portal_*</u> 
+
+Go to Cosmos DB, then click `Add` to create a CosmosDB account.
 
 Input the details for the instance:
 
-- Resource Group: The one you created earlier for the workshop. `ndcOsloRG`
-- Account name: ndcoslocosmosdb
+- Resource Group: The one you created earlier for the workshop. `ndcLondonRG`
+- Account name: ndclondoncosmosdb
 - API: Core (SQL)
 - Locatoin: North Europe
 - Geo-redundancy: Enable
@@ -13,7 +15,7 @@ Input the details for the instance:
 
 Click `Next`
 
-Create a new virtual network: `ndcOsloVNet`.
+Create a new virtual network: `ndcLondonVNet`.
 
 Allow access from my IP: Allow.
 
@@ -30,19 +32,19 @@ Go to `Data Explorer` and add a new container.
 - Partition key: `/UrlId`. 
 - Throughput: 400.
 
-*_CLI_*
+<u>*_CLI_*</u>
 
 Create the Cosmos DB account
 
-`az cosmosdb create -g ndcOsloRG --name ndcoslocosmosdb --kind GlobalDocumentDB --locations "North Europe"=0 "West Europe"=1 --default-consistency-level "Session" --enable-multiple-write-locations true`
+`az cosmosdb create -g ndclondonRG --name ndclondoncosmosdb --kind GlobalDocumentDB --locations "North Europe"=0 "West Europe"=1 --default-consistency-level "Session" --enable-multiple-write-locations true`
 
 Create the database
 
-`az cosmosdb database create -g ndcOsloRG --name ndcoslocosmosdb --db-name URLs`
+`az cosmosdb database create -g ndclondonRG --name ndclondoncosmosdb --db-name URLs`
 
 Create the SQL container
 
-`az cosmosdb collection create -g ndcOsloRG --collection-name ShortUrls  --name ndcoslocosmosdb --db-name URLs --partition-key-path /UrlId --throughput 400`
+`az cosmosdb collection create -g ndclondonRG --collection-name ShortUrls  --name ndclondoncosmosdb --db-name URLs --partition-key-path /UrlId --throughput 400`
 
 ## Add Data to CosmosDB
 
@@ -50,11 +52,11 @@ Navigate to your Cosmos DB instance. Select `Data Explorer`.
 
 Expand the tree list for the `urlshortener` database and click on `items`. Click on `new item` and insert the following JSON:
 
-~~~~ 
+~~~~ json
 {
     "UrlId": "566253392",
-    "OriginalUrl" : "http://www.ndcoslo.com",
-    "CreatedDateTime": "2019-06-16T07:35:18.1018357+02:00"
+    "OriginalUrl" : "http://www.ndc-london.com",
+    "CreatedDateTime": "2020-01-26T07:35:18.1018357+00:00"
 }
 ~~~~
 
