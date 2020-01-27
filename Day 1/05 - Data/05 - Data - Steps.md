@@ -102,7 +102,7 @@ Your test environment/local machine now use the emulator and publishing the proj
 
 ## Add Cosmos SDK to Project
 
-Get the following files from the [Github workshop repo](https://github.com/lklint/azure-workshop/tree/master/Day 1/05 - Data) and replace/add them in your solution.
+Get the following files from the [Github workshop repo](https://github.com/lklint/azure-workshop/tree/master/Day%201/05%20-%20Data) and replace/add them in your solution.
 
 - `ShortUrlsController.cs`
 - `ShortUrl.cs`
