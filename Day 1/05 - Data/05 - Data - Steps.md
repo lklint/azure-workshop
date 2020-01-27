@@ -7,36 +7,40 @@ Go to Cosmos DB, then click `Add` to create a CosmosDB account.
 Input the details for the instance:
 
 - Resource Group: The one you created earlier for the workshop. `ndcLondonRG`
-- Account name: ndclondoncosmosdb
+- Account name: `ndclondoncosmosdb`
 - API: Core (SQL)
-- Locatoin: North Europe
+- Location: North Europe
 - Geo-redundancy: Enable
 - Multi-region writes: Enable
 
 Click `Next`
 
+Select `Public Endpoint` as connectivity method.
+
 Create a new virtual network: `ndcLondonVNet`.
 
 Allow access from my IP: Allow.
 
-Click `Review + Create`, then click `Create`.
+Click `Review + Create`, then click `Create`. **Note**: This can take several minutes. CosmosDB like to take is slow on the first date.
 
 Now you need to create a database in the Cosmos account.
 
-Click on the new Cosmos DB account you created. In the overview, click `Create Items Container`. This will create a data container within your account.
+Click on the new Cosmos DB account you created. In the overview, click `Create 'Items' Container`. This will create a data container within your account.
 
-Go to `Data Explorer` and add a new container. 
+Then click `Open Data Explorer` and add a new container. 
 
 - Database ID : `URLs`. 
+- Throughput: 400.
 - Container ID : `ShortUrls`. 
 - Partition key: `/UrlId`. 
-- Throughput: 400.
+
+Click `OK`
 
 <u>*_CLI_*</u>
 
 Create the Cosmos DB account
 
-`az cosmosdb create -g ndclondonRG --name ndclondoncosmosdb --kind GlobalDocumentDB --locations "North Europe"=0 "West Europe"=1 --default-consistency-level "Session" --enable-multiple-write-locations true`
+`az cosmosdb create -g ndcLondonRG --name ndclondoncosmosdb --kind GlobalDocumentDB --locations "North Europe"=0 "West Europe"=1 --default-consistency-level "Session" --enable-multiple-write-locations true`
 
 Create the database
 
@@ -60,6 +64,8 @@ Expand the tree list for the `urlshortener` database and click on `items`. Click
 }
 ~~~~
 
+Then click `Save.`
+
 Go to the `Keys` section of the CosmosDB. Make a note of `Primary Key`.
 
 This is the very basic data format we will use for the data from the URL shortener. 
@@ -68,13 +74,13 @@ This is the very basic data format we will use for the data from the URL shorten
 
 Go back to or open the UrlShortener solution in VS2019. 
 
-Open the Nuget package manager by right clicking on the project `UrlShortener` in Team Explorer. Search for `Microsoft.Azure.DocumentDB.Core` and click install. 
+Open the NuGet package manager by right clicking on the project `UrlShortener` in Solution Explorer -> Manage NuGet Packages. Search for `Microsoft.Azure.DocumentDB.Core` and click install. 
 
 Alternatively, use the `Tools -> Package-manager Console` in VS2019 and enter the command `Install-Package Microsoft.Azure.DocumentDB.Core`.
 
 Open `appsettings.json` and add the following settings, after logging:
 
-~~~~
+~~~~json
 "CosmosDB": {
   "URL": "<URI from Azure>",
   "PrimaryKey": "<PRIMARY KEY from Azure>"
@@ -96,7 +102,7 @@ Your test environment/local machine now use the emulator and publishing the proj
 
 ## Add Cosmos SDK to Project
 
-Get the following files from the [Github workshop repo](https://github.com/lklint/azure-workshop/tree/master/Day%202/02%20-%20Data) and replace/add them in your solution.
+Get the following files from the [Github workshop repo](https://github.com/lklint/azure-workshop/tree/master/Day 1/05 - Data) and replace/add them in your solution.
 
 - `ShortUrlsController.cs`
 - `ShortUrl.cs`
@@ -111,7 +117,7 @@ Look through the updated and new files and understand the changes to use Cosmos 
 
 In `Startup.cs` after the line `services.AddScoped<IShortUrlService, ShortUrlService>();` add 
 
-~~~~
+~~~~c#
 services.AddScoped<Persistence>((s) =>
 {
     return new Persistence(
@@ -126,7 +132,7 @@ Run the project to test out the new Url Shorterner with added Azure goodness. Ad
 
 Open the Cosmos DB Emulator Data Explorer using the Windows tray icon. Find the URL you just created.
 
-Go to your Web App in the Portal -> Configuration. We need to add a new application setting to allow the website to use the production configurations.
+Go to your Web App in the Azure Portal -> Configuration. We need to add a new application setting to allow the website to use the production configurations.
 
 Add the key `ASPNETCORE_ENVIRONMENT` with value `Production`. Then click *Save*.
 
