@@ -52,3 +52,13 @@ Go back to the portal and inspect the container image in your ACR.
 You can now run the container image from ACR locally on your machine.
 
 `docker run <acrLoginServer>/hello-world:v1`
+
+## Build a Container Pipeline
+
+Go to Azure DevOps and create a new pipeline. Use the classic visual editor and choose the UrlShortener project as repository. 
+
+Click `Continue` and search for the **Docker container** template. Apply it. 
+
+Under the **Build an image** step select the subscription and Azure Container Register you created before. 
+
+Select missing values for the **Push an image** step and save the pipeline.
