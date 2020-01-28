@@ -20,6 +20,12 @@ Use the Azure CLI: `az ad sp create-for-rbac -n "http://ndcPrincipal" --sdk-auth
 
 Run the following command to let the service principal access your key vault: `az keyvault set-policy -n <YourKeyVaultName> --spn <clientId-of-your-service-principal> --secret-permissions delete get list set --key-permissions create decrypt delete encrypt get list unwrapKey wrapKey` 
 
+Add environment variables to store the values of *clientId*, *clientSecret*, and *tenantId*. In the command prompt:
+
+``setx AZURE_CLIENT_ID <clientId-of-your-service-principal>
+setx AZURE_CLIENT_SECRET <clientSecret-of-your-service-principal>
+setx AZURE_TENANT_ID <tenantId-of-your-service-principal>``
+
 ## Create Azure App Configuration
 
 Azure App Configuration provides a service to centrally manage application settings and feature flags. Use it here to store the Key Vault secret reference.
