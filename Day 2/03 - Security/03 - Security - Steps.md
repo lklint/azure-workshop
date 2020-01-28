@@ -2,33 +2,45 @@
 
 We want to remove sensitive information from anything that is checked into source control. This includes connection strings, passwords and certificates. Azure Key Vault is a great place to store these.
 
-*Portal*: Go to the Portal and search for `Key Vault`. Click Add and give it a name, subscription and resource group.
+*Portal*: Go to the Portal and search for `Key Vault`. Click Add and give it a name, subscription and resource group. Leave the rest as default for now.
 
 *CLI*: `az keyvault create --name "<YourKeyVaultName>" --resource-group "<YourResourceGroupName>" --location "North Europe"`
 
 Now, add the Cosmos DB production primary key as a secret in the key vault. Use either the Portal or CLI. 
 
-*CLI*: az keyvault secret set --vault-name "ndcOsloKeyVault" --name "CosmosDBConnection" --value "<Cosmos Primary Key>" 
+*CLI*: az keyvault secret set --vault-name "ndcLondonKeyVault" --name "CosmosDBConnection" --value "<Cosmos Primary Key>" 
 
 Make a note of this secret for later.
 
-## Register an application with Azure Active Directory
+## Connect To Key Vault
 
-We will register a new application in Azure AD which can then be granted access to the Key Vault we created using an access policy.
+Create a service principal for authentication to your Key Vault. 
 
-From the Azure portal, navigate to Azure Active Directory and open up the App Registrations blade. Click on New application registration and fill in the defaults.
+Use the Azure CLI: `az ad sp create-for-rbac -n "http://ndcPrincipal" --sdk-auth`. This will return a bunch of key/value pairs. Make a note of these. 
 
-Make sure to select Web app / API as the application type but you can enter whatever URL you like at this point. Take note of the Application ID as this is needed later when configuring ASP.NET. 
+Run the following command to let the service principal access your key vault: `az keyvault set-policy -n <YourKeyVaultName> --spn <clientId-of-your-service-principal> --secret-permissions delete get list set --key-permissions create decrypt delete encrypt get list unwrapKey wrapKey` 
 
-We also need to create a Key to use for the Azure AD Applicatoin. Click on Keys and enter in a Description and Expiry setting for a new password. The Value will be displayed when you press Save. Copy the value so that you can use it later.
+## Create Azure App Configuration
 
-## Authorize the application to access your KeyVault resource
+Azure App Configuration provides a service to centrally manage application settings and feature flags. Use it here to store the Key Vault secret reference.
 
-Now that we’ve got an App registered, we are going to grant it access to the KeyVault we created earlier. Head back to the KeyVault and click on Access Policies. Then click Add new.
+In the Azure Portal, create a new resource and search for `App Configuration`. Create a new instance and set the following values.
 
-Search for the App and set it as the principal for the access policy, and grant it access to the Get, List, and Set secret permissions.
+* Resource Name: globally unique name.
+* Subscription: your subscription.
+* Resource Group: NDCLondonRG
+* Location: North Europe
 
-Click OK and save the new access policy configuration.
+Once create make a note of the primary read-only key in `Settings > Access Keys`. You'll use this connection string to configure your application to communicate with the App Configuration store that you created.
+
+Select **Configuration Explorer**. Select **+ Create** > **Key vault reference**, and then specify the following values:
+
+- **Key**: Select **NDCApp:Settings:KeyVaultMessage**.
+- **Label**: Leave this value blank.
+- **Subscription**, **Resource group**, and **Key vault**: Enter the values corresponding to those in the key vault you created in the previous section.
+- **Secret**: Select the secret named **CosmosDBConnection** that you created in the previous section.
+
+Click **Apply**.
 
 
 ## Update Web App in Visual Studio
@@ -36,41 +48,37 @@ Click OK and save the new access policy configuration.
 Next is to add the Azure KeyVault configuration provider to our web application and configure it so that it uses the ClientId and ClientSecret of the App that was registered in Azure AD.
 
 Add the two Nuget packages
-- `Microsoft.Azure.Services.AppAuthentication`
-- `Microsoft.Extensions.Configuration.AzureKeyVault`
+- `Microsoft.Extensions.Configuration.AzureAppConfiguration` (this is a preview SDK, so check the "include prerelease" box)
+- `Microsoft.Azure.KeyVault`
+- `Azure.Identity`
 
-Add the following configuration to the startup code in `Program.cs`
+Add the following configuration to the startup code in `Program.cs` (replace the current function).
 
-~~~~
+~~~~c#
 public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-     WebHost.CreateDefaultBuilder(args)
-     .ConfigureAppConfiguration((context, config) =>
-     {
-         var root = config.Build();
-         config.AddAzureKeyVault(
-            $”https://{root["KeyVault:Vault"]}.vault.azure.net/",
-            root[“KeyVault:ClientId”],
-            root[“KeyVault:ClientSecret”]);
-     })
-     .UseStartup<Startup>();
-~~~~
+    WebHost.CreateDefaultBuilder(args)
+        .ConfigureAppConfiguration((hostingContext, config) =>
+        {
+            var settings = config.Build();
 
-Next, add the Vault name, and the ClientId and Client Secret for the App registration to the `appsettings.json` file.
-
-~~~~
-"KeyVault": {
-	"Vault": "<name of your vault>",
-	"ClientId": "<Azure AD app ID>",
-	"ClientSecret": "<Secret from Azure AD app>"
-}
+            config.AddAzureAppConfiguration(options =>
+            {
+                options.Connect(settings["ConnectionStrings:AppConfig"])
+                        .ConfigureKeyVault(kv =>
+                        {
+                            kv.SetCredential(new DefaultAzureCredential());
+                        });
+            });
+        })
+        .UseStartup<Startup>();
 ~~~~
 
 Update the `Startup.cs` file with the Azure Key Vault secret name for Cosmos DB.
 
-~~~~
+~~~~c#
 return new Persistence(
     new Uri(Configuration["CosmosDB:URL"]),
-            Configuration["<Key vault secret name>"]);
+            Configuration["NDCApp:Settings:KeyVaultMessage"]);
 ~~~~
 
 ## Securing the Web App with Let's Encrypt
